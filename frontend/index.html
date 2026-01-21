@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Paper Analyzer</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Sanitizer (prevents HTML injection in markdown) -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div>
+        <h1>Paper Analyzer</h1>
+        <p class="subtitle">Upload a PDF research paper and get a structured evaluation.</p>
+      </div>
+      <div class="pill">FastAPI + Gemini</div>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <div class="filewrap">
+          <input id="pdfFile" type="file" accept="application/pdf" />
+        </div>
+        <button id="analyzeBtn" class="primary">Analyze</button>
+        <div class="hint">Tip: large PDFs may take longer.</div>
+      </div>
+
+      <div id="status" class="status"></div>
+      <div id="error" class="error"></div>
+    </section>
+
+    <section class="card">
+      <div class="cardhead">
+        <div class="tabs">
+          <button class="tab active" id="tabOverall" type="button">Overall</button>
+        </div>
+
+        <div class="actions">
+          <button id="copyBtn" class="ghost" type="button" disabled>Copy</button>
+          <button id="downloadBtn" class="ghost" type="button" disabled>Download .md</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="rendered" class="markdown"></div>
+        <pre id="raw" class="raw hidden"></pre>
+      </div>
+    </section>
+
+    <footer class="footer">Upload → Analyze → Read the result.</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
